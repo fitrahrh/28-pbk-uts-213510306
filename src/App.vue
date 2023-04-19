@@ -50,7 +50,6 @@ export default {
 </template>
 
 <style>
-
   form {
     display: flex;
     margin-bottom: 20px;
@@ -62,7 +61,6 @@ export default {
     border-radius: 5px;
     margin-right: 10px;
     font-size: 16px;
-    border
   }
   form button {
     background-color: #2ecc71;
