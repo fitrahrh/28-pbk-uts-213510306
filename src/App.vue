@@ -1,3 +1,4 @@
+
 <script>
 let id = 0
 
@@ -7,9 +8,9 @@ export default {
       newTodo: '',
       hideCompleted: false,
       todos: [
-        { id: id++, text: 'Learn HTML', done: true },
-        { id: id++, text: 'Learn JavaScript', done: true },
-        { id: id++, text: 'Learn Vue', done: false }
+        { id: id++, text: 'Makan pagi', done: true },
+        { id: id++, text: 'Tidur Siang', done: false },
+        { id: id++, text: 'Malam Belajar', done: false }
       ]
     }
   },
@@ -31,7 +32,6 @@ export default {
   }
 }
 </script>
-
 <template>
   <h1>DAFTAR KEGIATAN</h1>
   <hr>
@@ -53,7 +53,13 @@ export default {
   </button>
 </template>
 
+
 <style>
+  .icon {
+    color: red;
+    width: 25px;
+    height: 25px;
+  }
   body,
   html{
     justify-content: center;
@@ -115,12 +121,12 @@ export default {
     color: #ff0202;
   }
   li button {
-    background-color: #ff8800;
+    background-color: #a90404;
     color: white;
     border: none;
     border-radius: 50%;
+    font-weight: bold;
     width: 30px;
-    height: 30px;
     margin-left: auto;
     font-size: 16px;
     cursor: pointer;
@@ -129,7 +135,7 @@ export default {
     justify-content: center;
   }
   li button:hover {
-    background-color: #b3ff00;
+    background-color: #6f0202;
   }
 
   button {
