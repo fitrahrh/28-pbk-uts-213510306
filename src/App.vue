@@ -33,13 +33,17 @@ export default {
 </script>
 
 <template>
+  <h1>DAFTAR KEGIATAN</h1>
+  <hr>
+  <br>
+
   <form @submit.prevent="addTodo">
     <input v-model="newTodo">
-    <button>Add Todo</button>
+    <button>Tambahkan</button>
   </form>
   <ul>
     <li v-for="todo in filteredTodos" :key="todo.id">
-      <input type="checkbox" v-model="todo.done">
+      <input type="checkbox" v-model="todo.done" placeholder="Masukkan kegiatan">
       <span :class="{ done: todo.done }">{{ todo.text }}</span>
       <button @click="removeTodo(todo)">X</button>
     </li>
@@ -50,16 +54,24 @@ export default {
 </template>
 
 <style>
+  body,
+  html{
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+    width: 100%;
+    height: 100%;
+  }
+
   form {
     display: flex;
     margin-bottom: 20px;
   }
   form input {
-    flex-grow: 1;
-    padding: 10px;
-    border: none;
+    border: 2px solid black;
     border-radius: 5px;
-    margin-right: 10px;
+    padding: 10px 20px;
+    margin-right: 20px;
     font-size: 16px;
   }
   form button {
@@ -88,6 +100,8 @@ export default {
     margin-bottom: 10px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    color: #06833a;
+    font-weight: bold;
   }
   li:hover {
     transform: translateY(-5px);
@@ -98,10 +112,10 @@ export default {
   }
   li .done {
     text-decoration: line-through;
-    color: #bdc3c7;
+    color: #ff0202;
   }
   li button {
-    background-color: #e74c3c;
+    background-color: #ff8800;
     color: white;
     border: none;
     border-radius: 50%;
@@ -115,7 +129,7 @@ export default {
     justify-content: center;
   }
   li button:hover {
-    background-color: #c0392b;
+    background-color: #b3ff00;
   }
 
   button {
@@ -132,4 +146,6 @@ export default {
   button:hover {
     background-color: #2980b9;
   }
+
+
 </style>
