@@ -1,3 +1,4 @@
+
 <script>
 let id = 0
 
@@ -6,7 +7,11 @@ export default {
     return {
       newTodo: '',
       hideCompleted: false,
-      todos: []
+      todos: [
+        { id: id++, text: 'Makan pagi', done: true },
+        { id: id++, text: 'Tidur Siang', done: false },
+        { id: id++, text: 'Malam Belajar', done: false }
+      ]
     }
   },
   computed: {
@@ -28,118 +33,125 @@ export default {
 }
 </script>
 <template>
-  <div class="container">
-    <h1>My Todo List</h1>
-    <form @submit.prevent="addTodo" class="form">
-      <input v-model="newTodo" class="form-input" placeholder="Enter a new task">
-      <button class="form-btn">Add Todo</button>
-    </form>
-    <ul class="todo-list">
-      <li v-for="todo in filteredTodos" :key="todo.id" class="todo-item">
-        <div class="todo-left">
-          <input type="checkbox" v-model="todo.done" class="todo-checkbox">
-          <span :class="{ done: todo.done }" class="todo-text">{{ todo.text }}</span>
-        </div>
-        <button @click="removeTodo(todo)" class="todo-delete-btn">Delete</button>
-      </li>
-    </ul>
-    <button @click="hideCompleted = !hideCompleted" class="show-btn">
-      {{ hideCompleted ? 'Show all' : 'Hide completed' }}
-    </button>
-  </div>
+  <h1>DAFTAR KEGIATAN</h1>
+  <hr>
+  <br>
+
+  <form @submit.prevent="addTodo">
+    <input v-model="newTodo">
+    <button>Tambahkan</button>
+  </form>
+  <ul>
+    <li v-for="todo in filteredTodos" :key="todo.id">
+      <input type="checkbox" v-model="todo.done" placeholder="Masukkan kegiatan">
+      <span :class="{ done: todo.done }">{{ todo.text }}</span>
+      <button @click="removeTodo(todo)">X</button>
+    </li>
+  </ul>
+  <button @click="hideCompleted = !hideCompleted">
+    {{ hideCompleted ? 'Tampilkan seluruh kegiatan ' : 'Sembunyikan kegiatan yang telah selesai' }}
+  </button>
 </template>
 
+
 <style>
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #b5b2b2;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+  .icon {
+    color: red;
+    width: 25px;
+    height: 25px;
+  }
+  body,
+  html{
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+    width: 100%;
+    height: 100%;
+  }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 2rem;
-}
+  form {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  form input {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-right: 20px;
+    font-size: 16px;
+  }
+  form button {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  form button:hover {
+    background-color: #27ae60;
+  }
 
-.form {
-  display: flex;
-  margin-bottom: 20px;
-}
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    color: #06833a;
+    font-weight: bold;
+  }
+  li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  li input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  li .done {
+    text-decoration: line-through;
+    color: #ff0202;
+  }
+  li button {
+    background-color: #a90404;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-weight: bold;
+    width: 30px;
+    margin-left: auto;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  li button:hover {
+    background-color: #6f0202;
+  }
 
-.form-input {
-  flex: 1;
-  padding: 10px;
-  font-size: 1.2rem;
-  border-radius: 5px 0 0 5px;
-  border: none;
-}
+  button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  button:hover {
+    background-color: #2980b9;
+  }
 
-.form-btn {
-  padding: 10px;
-  font-size: 1.2rem;
-  background-color: #000000;
-  color: #fff;
-  border: none;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-}
 
-.todo-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.todo-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.todo-left {
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
-
-.todo-checkbox {
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.todo-text {
-  font-size: 1.2rem;
-}
-
-.todo-delete-btn {
-  padding: 10px;
-  font-size: 1.2rem;
-  background-color: gray;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-}
-
-.todo-delete-btn:hover {
-  transform: scale(1.1);
-}
-
-.show-btn {
-  display: block;
-  margin: 0 auto;
-  padding: 10px;
-  font-size: 1.2rem;
-  background-color: #00ff84;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
 </style>
