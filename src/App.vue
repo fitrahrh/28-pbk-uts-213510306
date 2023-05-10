@@ -26,19 +26,32 @@ import { RouterLink, RouterView } from 'vue-router'
 }
 
 nav {
-  padding: 30px;
+  padding: 0px;
   text-align: center;
+  background-color: black;
+  padding: 15px;
+  border-radius: 7px;
 }
 
 nav a {
   font-weight: bold;
   text-decoration: none;
   padding: 10px;
+  font-size: 16px;
+  color: white;
+}
+
+
+nav a:hover {
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px;
+  color: white;
 }
 
 nav a.router-link-exact-active {
-  color: #ffff;
-  background: #0f766e;
-  border-radius: 10px;
+  color: black;
+  background: white;
+  border-radius: 5px;
 }
 </style>
